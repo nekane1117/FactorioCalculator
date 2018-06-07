@@ -73,7 +73,7 @@
                 nameDiv.classList.add(className);
                 valueDiv.classList.add(className);
             });
-            nameDiv.innerHTML = item;
+            nameDiv.innerHTML = LOCALIZED_NAME[item];
             valueDiv.innerHTML = rawMaterials[item];
 
             document.getElementById("ingredients").appendChild(rowDiv);
