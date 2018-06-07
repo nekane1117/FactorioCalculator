@@ -39,7 +39,7 @@
 <script>
     // jsonからオプションを作る。
     // せっかくだからソートしてみた
-    async function JsonToSelectOptions(targetId, json, blank = false) {
+    async function JsonToSelectOptions(targetId, json, initialValue, blank = false) {
         document.getElementById(targetId).innerHTML = blank ? `<option value=""></option>` : ""
         Object.keys(json).sort((key1, key2) => {
             if (LOCALIZED_NAME[key1] < LOCALIZED_NAME[key2]) {
@@ -50,7 +50,7 @@
                 return 0;
             }
         }).forEach((key) => {
-            document.getElementById(targetId).innerHTML += `<option value=${key}>${(() => LOCALIZED_NAME[key] || key)()}</option>`
+            document.getElementById(targetId).innerHTML += `<option value=${key} ${(()=>initialValue==key?"selected": "")()}>${(() => LOCALIZED_NAME[key] || key)()}</option>`
         });
     }
 
@@ -85,7 +85,7 @@
 
     (function () {
         JsonToSelectOptions("Item", ITEM_LIST);
-        JsonToSelectOptions("equipmentMode", EQUIPMENT_MODE);
-    })();
+        JsonToSelectOptions("equipmentMode", EQUIPMENT_MODE, EQUIPMENT_MODE.NORMAL);
+})();
 
 </script>

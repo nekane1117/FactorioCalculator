@@ -60,9 +60,17 @@ const EQUIPMENT = (function () {
                     if (equipmentMode === EQUIPMENT_MODE.MAXIMUM) {
                         // 最大の場合には3を固定で返す
                         return EQUIPMENT.ASSEMBLY_MACHINE.Assembly_Machine_3;
-                    } else {
-                        // 最大でない場合は素材数で判定する
+                    } else if (equipmentMode === EQUIPMENT_MODE.NORMAL) {
+                        // 通常は素材の種類にあわせて組み立て機2か3を使う
                         return amountOfMaterial <= 4 ? EQUIPMENT.ASSEMBLY_MACHINE.Assembly_Machine_2 : EQUIPMENT.ASSEMBLY_MACHINE.Assembly_Machine_3;
+                    } else {
+                        if(amountOfMaterial <= 2){
+                          return EQUIPMENT.ASSEMBLY_MACHINE.Assembly_Machine_1;
+                        } else if (amountOfMaterial <= 4){
+                          return EQUIPMENT.ASSEMBLY_MACHINE.Assembly_Machine_2;
+                        } else {
+                          return EQUIPMENT.ASSEMBLY_MACHINE.Assembly_Machine_3;
+                      }
                     }
                 case EQUIPMENT_TYPE.REFINERY:
                     // 精製所は原油しかない
@@ -91,6 +99,7 @@ const EQUIPMENT_TYPE = Object.keys(EQUIPMENT).reduce((a, c) => (a[c] = c, a), {}
 // 最大と最小
 const EQUIPMENT_MODE = {
     "MINIMUM": "MINIMUM",
+    "NORMAL": "NORMAL",
     "MAXIMUM": "MAXIMUM"
 };
 // レシピ全部
