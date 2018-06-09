@@ -1,1 +1,91 @@
-test
+<!DOCTYPE HTML>
+
+<head>
+    <meta content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="src/FactorioCaliculator.js" charset="UTF-8"></script>
+    <style>
+        * {
+            font-family: "ＭＳ ゴシック"
+        }
+
+        .inlineBlock {
+            display: inline-block;
+        }
+
+        .harfBox {
+            width: 50%;
+            height: 100%;
+        }
+
+        .borderBox {
+            border: solid black 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>アイテム</div>
+    <div><select id="Item"></select></div>
+    <div>生産速度</div>
+    <div><input id="requiredProduction" value="1" /><label>個/s</label></div>
+    <div>装置モード</div>
+    <div><select id="equipmentMode"></select></div>
+    <div><button onclick="onCalculate()">calculate</button></div>
+    <div>
+        <div id="ingredients">&nbsp;</div>
+        <div id="Tree">&nbsp;</div>
+    </div>
+</body>
+<script>
+    // jsonからオプションを作る。
+    // せっかくだからソートしてみた
+    async function JsonToSelectOptions(targetId, json, initialValue, blank = false) {
+        document.getElementById(targetId).innerHTML = blank ? `<option value=""></option>` : ""
+        Object.keys(json).sort((key1, key2) => {
+            if (LOCALIZED_NAME[key1] < LOCALIZED_NAME[key2]) {
+                return -1;
+            } else if (LOCALIZED_NAME[key1] > LOCALIZED_NAME[key2]) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }).forEach((key) => {
+            document.getElementById(targetId).innerHTML += `<option value=${key} ${(()=>initialValue==key?"selected": "")()}>${(() => LOCALIZED_NAME[key] || key)()}</option>`
+        });
+    }
+
+    async function onCalculate() {
+        let calculateResult = calculate(
+            document.getElementById("Item").value,
+            document.getElementById("requiredProduction").value,
+            document.getElementById("equipmentMode").value)
+
+        document.getElementById("Tree").innerHTML = "<div>【生産ツリー】</div>" + textOutput(calculateResult).join("<br>").replace(" ", "&nbsp;");
+
+        document.getElementById("ingredients").innerHTML = "<div>【原材料リスト】</div>";
+        let rawMaterials = calculateRawMaterials(calculateResult)
+        Object.keys(rawMaterials).sort().forEach((item) => {
+            let rowDiv = document.createElement("div");
+            rowDiv.style.width = "100%";
+            let nameDiv = document.createElement("div");
+            let valueDiv = document.createElement("div");
+            ["inlineBlock", "harfBox"].forEach((className) => {
+                nameDiv.classList.add(className);
+                valueDiv.classList.add(className);
+            });
+            nameDiv.innerHTML = LOCALIZED_NAME[item];
+            valueDiv.innerHTML = rawMaterials[item];
+
+            document.getElementById("ingredients").appendChild(rowDiv);
+            rowDiv.appendChild(nameDiv);
+            rowDiv.appendChild(valueDiv);
+
+        });
+    }
+
+    (function () {
+        JsonToSelectOptions("Item", ITEM_LIST);
+        JsonToSelectOptions("equipmentMode", EQUIPMENT_MODE, EQUIPMENT_MODE.NORMAL);
+})();
+
+</script>
