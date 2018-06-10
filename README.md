@@ -4,7 +4,7 @@
 
 ## デモ
 
--   [https://nekane1117.github.io/FactorioCaliculator/](<>)
+-   [DEMO](https://nekane1117.github.io/FactorioCaliculator/)
 
 ## 出力サンプル
 
