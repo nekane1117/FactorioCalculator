@@ -1,10 +1,10 @@
-# FactorioCaliculator
+# FactorioCalculator
 
 -   Factorio用生産設備数計算機(Ver 0.16)
 
 ## デモ
 
--   [DEMO](https://nekane1117.github.io/FactorioCaliculator/)
+-   [DEMO](https://nekane1117.github.io/FactorioCalculator/)
 
 ## 出力サンプル
 
