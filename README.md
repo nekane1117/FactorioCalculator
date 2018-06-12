@@ -44,16 +44,17 @@ Iron_plate    2
 ## 制約
 
 -   「原材料」は以下とする
-    1.  水(Water)
-    2.  石炭(Coal)
-    3.  原油(Crude_oil)
-    4.  鉄板(Iron_plate)
-    5.  銅板(Copper_plate)
-    6.  鋼材(Steel_plate)
-    7.  石(Stone)
-    8.  ウラン238(Uranium_238)
-    9.  ウラン235(Uranium_235)
-    10. 石レンガ(Stone_brick)
+    1.  原木(Row_wood)
+    2.  水(Water)
+    3.  石炭(Coal)
+    4.  原油(Crude_oil)
+    5.  鉄板(Iron_plate)
+    6.  銅板(Copper_plate)
+    7.  鋼材(Steel_plate)
+    8.  石(Stone)
+    9.  ウラン238(Uranium_238)
+    10. ウラン235(Uranium_235)
+    11. 石レンガ(Stone_brick)
 
 
 -   レシピが複数あるものは以下のレシピを使用する

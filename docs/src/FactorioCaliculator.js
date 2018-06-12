@@ -105,6 +105,7 @@ const EQUIPMENT_MODE = {
 // レシピ全部
 const RECIPES = {
     // 原材料。ここが再起の末尾
+    "Row_wood": {},
     "Water": {},
     "Coal": {},
     "Crude_oil": {},
@@ -116,6 +117,15 @@ const RECIPES = {
     "Uranium_235": {},
     "Stone_brick": {},
     // ここから
+    "Wood": {
+        "ingredients": {
+            "Row_wood": {
+                "amount": 1
+            }},
+        "production": 2,
+        "equipment": "ASSEMBLY_MACHINE",
+        "time": 0.5
+    },
     "Sulfur": {
         "ingredients": {
             "Water": {
@@ -2973,6 +2983,7 @@ const LOCALIZED_NAME = {
     "Rocket_launcher": "ロケットランチャー",
     "Rocket_part": "ロケット部品",
     "Rocket_silo": "ロケットサイロ",
+    "Row_wood": "原木",
     "Satellite": "衛星",
     "Science_Pack_1": "サイエンスパック1",
     "Science_Pack_2": "サイエンスパック2",
@@ -3016,6 +3027,7 @@ const LOCALIZED_NAME = {
     "Uranium_cannon_shell": "劣化ウラン砲弾",
     "Uranium_rounds_magazine": "劣化ウラン弾薬",
     "Water": "水",
+    "Wood": "木材",
     "Wooden_chest": "木製チェスト"
 };
 
